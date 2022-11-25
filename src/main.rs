@@ -1,6 +1,5 @@
 use std::io;
 use std::io::Write;
-use std::cmp::Ordering;
 
 extern "C" {
     fn rand() -> i32;
@@ -31,13 +30,13 @@ fn main() {
         if guess < 0 {
             continue;
         }
-        match guess.cmp(&rn) {
-            Ordering::Less => println!("too small"),
-            Ordering::Greater => println!("too large"),
-            Ordering::Equal => {
-                println!("yup!");
-                break;
-            }
+        if guess < rn {
+            println!("too small");
+        } else if guess > rn {
+            println!("too large");
+        } else {
+            println!("perfectly balanced, as all things should be!");
+            break;
         }
     }
 }
