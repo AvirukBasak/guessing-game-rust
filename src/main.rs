@@ -14,7 +14,10 @@ fn inputnum(prompt: &str) -> i32 {
     io::stdin().read_line(&mut inp).unwrap();
     let inp: i32 = match inp.trim().parse() {
         Ok(num) => num,
-        Err(_) => -1
+        Err(_) => {
+            println!("invalid number");
+            -1
+        }
     };
     return inp;
 }
