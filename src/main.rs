@@ -5,6 +5,8 @@ extern "C" {
     fn rand() -> i32;
     fn srand(seed: i32);
     fn getpid() -> i32;
+    fn time(ptr: u64) -> i32;
+    fn clock() -> i32;
 }
 
 fn inputnum(prompt: &str) -> i32 {
@@ -25,7 +27,7 @@ fn inputnum(prompt: &str) -> i32 {
 fn main() {
     let rn: i32;
     unsafe {
-        srand(getpid());
+        srand( getpid() ^ time(0) ^ clock() );
         rn = rand() % 100;
     }
     loop {
